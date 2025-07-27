@@ -299,3 +299,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
   <strong>🎮 Happy Gaming! 🎮</strong><br>
   <em>Optimize your CS2 experience and dominate the competition</em>
 </div>
+=======
+# cs2_steam
+optimization of fps
+>>>>>>> origin/main
