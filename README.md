@@ -47,6 +47,7 @@ CS2 Optimization Toolkit
 - **Windows 10/11** or **Linux (WSL2)**
 - **Python 3.11+**
 - **Docker & Docker Compose** (optional)
+- **Git** with Git LFS support (for development)
 - **NVIDIA GPU** with drivers installed
 - **Counter-Strike 2** installed via Steam
 
@@ -71,17 +72,39 @@ CS2 Optimization Toolkit
    ACTIVE_CONFIG_PATH = "C:/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/autoexec.cfg"
    ```
 
-4. **Run driver installation** (Windows PowerShell as Administrator)
-   ```powershell
-   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-   .\msi_drivers\install_msi_drivers.ps1
-   ```
+4. **Download and install drivers**
+   - Download the driver package from [Releases](https://github.com/matlabuser123/cs2_steam/releases)
+   - Extract `cs2_drivers.zip` into the root directory
+   - Run the installation script (Windows PowerShell as Administrator):
+     ```powershell
+     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+     .\msi_drivers\install_msi_drivers.ps1
+     ```
 
 ## 🛠️ Usage
+
+### Development
+
+For contributors, this repository uses Git LFS for large driver files:
+
+1. **Set up Git LFS:**
+   ```bash
+   git lfs install
+   ```
+
+2. **Clone with LFS support:**
+   ```bash
+   git clone https://github.com/matlabuser123/cs2_steam.git
+   cd cs2_steam
+   git lfs pull
+   ```
+
+Note: Driver files are not stored in the repository to keep it lightweight. Instead, they are distributed as release assets.
 
 ### Dashboard & Monitoring
 
 **Start the complete stack with Docker:**
+
 ```bash
 docker-compose up -d
 ```
