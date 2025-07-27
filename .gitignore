@@ -1,0 +1,22 @@
+# Large driver files
+drivers/*.zip
+msi_drivers/*.zip
+
+# Logs and temp files
+*.log
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+
+# Environment and settings
+.env
+.env.local
+.venv/
+env/
+venv/
+
+# Build files
+dist/
+build/
+*.spec
