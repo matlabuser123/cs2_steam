@@ -1,6 +1,7 @@
 # Large driver files
-drivers/*.zip
-msi_drivers/*.zip
+drivers/
+msi_drivers/
+cs2_drivers.zip
 
 # Logs and temp files
 *.log
