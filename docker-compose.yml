@@ -1,0 +1,116 @@
+version: '3.8'
+
+services:
+  # MSI Driver Management Service
+  pro-drivers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./drivers:/app/drivers
+      - ./msi_drivers:/app/msi_drivers
+    entrypoint: ["python", "pro_drivers_app.py"]
+    command: ["--list"]
+    restart: on-failure
+    networks:
+      - cs2tune-net
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - PYTHONUNBUFFERED=1
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Enhanced Streamlit Dashboard with Telemetry
+  streamlit-gui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    environment:
+      - PATH=/usr/local/bin:/usr/bin:/bin:/app
+      - PYTHONUNBUFFERED=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/app
+      - ./drivers:/app/drivers
+      - ./cs2tune:/app/cs2tune
+    entrypoint: ["streamlit", "run"]
+    command: ["dashboard.py", "--server.port=8501", "--server.enableCORS=false", "--server.address=0.0.0.0"]
+    depends_on:
+      - pro-drivers
+      - telemetry-ws
+    restart: always
+    networks:
+      - cs2tune-net
+    runtime: nvidia
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Telemetry WebSocket Server
+  telemetry-ws:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - "8000:8000"  # FastAPI + WebSocket port
+    volumes:
+      - ./cs2tune:/app/cs2tune
+      - ./:/app
+    entrypoint: ["python"]
+    command: ["cs2tune/telemetry_ws.py"]
+    environment:
+      - PYTHONUNBUFFERED=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    restart: unless-stopped
+    networks:
+      - cs2tune-net
+    runtime: nvidia
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # OBS Overlay Frontend
+  overlay:
+    build:
+      context: ./overlay
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"  # Vite dev server
+      - "8080:80"    # Production nginx
+    volumes:
+      - ./overlay:/app
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - telemetry-ws
+    networks:
+      - cs2tune-net
+    environment:
+      - NODE_ENV=development
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+networks:
+  cs2tune-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

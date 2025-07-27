@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  overlay:
+    build: ./overlay
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+  telemetry_ws:
+    image: python:3.11-slim
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: ["python", "overlay/telemetry_ws.py"]
+    ports:
+      - "8502:8502"
+    environment:
+      - PYTHONUNBUFFERED=1

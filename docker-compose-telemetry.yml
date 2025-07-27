@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  telemetry:
+    image: telemetry-dashboard:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./telemetry:/app/telemetry
+    environment:
+      - MONITOR_FPS=true
+      - MONITOR_GPU=true
+      - MONITOR_CPU=true
+    command: ["python", "telemetry_dashboard.py"]

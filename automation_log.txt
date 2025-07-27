@@ -1,0 +1,1 @@
+2025-07-27 23:49:54,194 - INFO - Running performance test using perftest.cfg

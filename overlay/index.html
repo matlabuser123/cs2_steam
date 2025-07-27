@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CS2Tune OBS Overlay</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      overflow: hidden;
+    }
+    canvas {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 25vw;
+      height: 20vh;
+    }
+    .metric-box {
+      position: absolute;
+      font-family: monospace;
+      font-size: 1.2em;
+      color: #00ff88;
+      background-color: rgba(0,0,0,0.3);
+      padding: 4px 10px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+    #temp {
+      top: 10px;
+      right: 10px;
+    }
+    #gpu {
+      bottom: 20px;
+      left: 20px;
+    }
+    #vram {
+      bottom: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fpsChart"></canvas>
+  <div class="metric-box" id="temp">GPU Temp: -- °C</div>
+  <div class="metric-box" id="gpu">GPU Load: --%</div>
+  <div class="metric-box" id="vram">VRAM Used: -- GB</div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

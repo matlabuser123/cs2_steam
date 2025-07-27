@@ -1,0 +1,45 @@
+name: cs2_optimizer
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Core Python version
+  - python=3.11
+
+  # Streamlit for the dashboard
+  - streamlit
+
+  # Scientific + telemetry tools
+  - numpy
+  - pandas
+  - matplotlib
+  - plotly
+  - scipy
+  - psutil
+  - pynvml  # NVIDIA GPU monitoring
+
+  # Backend tools
+  - requests
+  - typer
+  - pyyaml
+  - rich
+
+  # Testing
+  - pytest
+
+  # CLI + logging
+  - click
+  - loguru
+
+  # Optional extras (comment out if not needed)
+  # - openpyxl           # For Excel export
+  # - opencv             # For visual overlays or camera capture
+  # - flask              # If you need REST API integration
+  # - pip
+
+  # If using any pip-only packages:
+  - pip:
+      - watchdog         # for live reloading and file monitoring
+      - GPUtil           # fallback GPU monitor if pynvml fails
+

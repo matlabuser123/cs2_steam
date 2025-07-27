@@ -1,0 +1,6 @@
+Driver installation failed: Command 'bash /mnt/c/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/msi_drivers/install_msi_drivers.sh' returned non-zero exit status 2.
+Driver installation failed: Command 'bash /mnt/c/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/msi_drivers/install_msi_drivers.sh' returned non-zero exit status 2.
+Driver installation failed: Command 'bash /mnt/c/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/msi_drivers/install_msi_drivers.sh' returned non-zero exit status 2.
+Driver installation failed: Command 'bash /mnt/c/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/msi_drivers/install_msi_drivers.sh' returned non-zero exit status 2.
+Driver verification failed: Command 'powershell -ExecutionPolicy Bypass -File /mnt/c/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/msi_drivers/verify_drivers.ps1' returned non-zero exit status 2.
+Driver installation failed: Command 'bash -c "bash /mnt/c/Program Files (x86)/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg/msi_drivers/install_msi_drivers.sh"' returned non-zero exit status 2.

@@ -1,0 +1,37 @@
+{
+  "version": 27,
+  "sources": [
+    {
+      "name": "Game Capture",
+      "type": "game_capture",
+      "settings": {
+        "mode": "capture_specific_window",
+        "window": "cs2.exe"
+      }
+    },
+    {
+      "name": "Webcam",
+      "type": "video_capture_device",
+      "settings": {
+        "device": "Your Webcam Device"
+      }
+    },
+    {
+      "name": "Overlay",
+      "type": "image",
+      "settings": {
+        "file": "path/to/your/overlay.png"
+      }
+    }
+  ],
+  "scenes": [
+    {
+      "name": "CS2 Streaming",
+      "sources": [
+        { "name": "Game Capture" },
+        { "name": "Webcam" },
+        { "name": "Overlay" }
+      ]
+    }
+  ]
+}
